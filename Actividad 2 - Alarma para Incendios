@@ -1,0 +1,34 @@
+int incendio;
+int alarma=2;
+int rojo=3;
+int verde=4;
+
+
+void setup()
+{
+  Serial.begin(9600);  
+  pinMode(rojo,OUTPUT);
+  pinMode(verde,OUTPUT);
+  pinMode(alarma,OUTPUT);
+  
+}
+
+void loop()
+{
+  incendio = analogRead(A5);
+  delay(500);
+  
+  if (incendio>0 && incendio<60)
+  {
+    digitalWrite(verde,HIGH);
+    digitalWrite(rojo,LOW);
+     noTone(alarma);
+  }
+      
+   if (incendio>60)
+  {
+    digitalWrite(verde,LOW);
+    digitalWrite(rojo,HIGH);
+    tone(alarma,600);
+   }
+}
